@@ -14,53 +14,51 @@ class Student:
     def __init__(self, name, marks):
         self.name = name  # Instance variable
         self.marks = marks  # Instance variable
-2. Using cls
+
+```
+## 2. **Using `cls`**
+
 The cls keyword is used in class methods to refer to the class itself. It enables you to interact with class-level variables and methods.
 
 Example:
-
-python
-Copy
-Edit
-class Counter:
+```class Counter:
     count = 0
     
     @classmethod
     def increment(cls):
         cls.count += 1
-3. Public Variables and Methods
+
+```
+
+## 3. **Public Variables and Methods**
 Public variables and methods can be accessed directly from outside the class. These are not restricted and can be modified without limitations.
 
 Example:
-
-python
-Copy
-Edit
-class Car:
+```class Car:
     def __init__(self, brand):
         self.brand = brand  # Public variable
     
     def start(self):  # Public method
         print("Car started")
-4. Class Variables and Class Methods
+
+```
+
+## 4. **Class Variables and Class Methods**
 Class variables are shared by all instances of the class. Class methods modify or interact with class variables and are defined using the @classmethod decorator.
 
 Example:
-
-python
-Copy
-Edit
-class Bank:
+```class Bank:
     bank_name = "ABC Bank"
     
     @classmethod
     def change_bank_name(cls, name):
         cls.bank_name = name
+
+```
 5. Static Variables and Static Methods
-Static variables are shared across all instances of the class, but they do not depend on any instance. Static methods are defined using @staticmethod and do not take self or cls as parameters.
+Static variables and methods are related to the class itself, but they don’t need an instance to be accessed. They are independent of the object state.
 
 Example:
-
 python
 Copy
 Edit
@@ -69,10 +67,9 @@ class MathUtils:
     def add(a, b):
         return a + b
 6. Constructors and Destructors
-Constructors (__init__) are used to initialize objects, while destructors (__del__) are called when objects are destroyed, allowing you to perform cleanup tasks.
+Constructors are used to initialize an object, while destructors are used to clean up when an object is destroyed.
 
 Example:
-
 python
 Copy
 Edit
@@ -83,23 +80,21 @@ class Logger:
     def __del__(self):
         print("Object destroyed")
 7. Access Modifiers: Public, Private, and Protected
-In Python, access modifiers control the visibility of variables and methods. Public members are accessible from outside the class, while private members are intended for internal use.
+Public variables and methods can be accessed from outside the class. Protected variables are typically meant for internal use, and private variables are meant to be inaccessible from outside the class.
 
 Example:
-
 python
 Copy
 Edit
 class Employee:
-    def __init__(self):
-        self.name = "John"  # Public
-        self._salary = 50000  # Protected
-        self.__ssn = "123-45-6789"  # Private
+    def __init__(self, name, salary, ssn):
+        self.name = name        # Public
+        self._salary = salary   # Protected
+        self.__ssn = ssn        # Private
 8. The super() Function
-The super() function allows calling a method from the base class. It is useful when working with inheritance and helps avoid explicit calls to the parent class.
+The super() function is used to call methods from the parent class. It is useful when overriding methods in child classes but still wanting to access the parent class functionality.
 
 Example:
-
 python
 Copy
 Edit
@@ -109,13 +104,12 @@ class Person:
 
 class Teacher(Person):
     def __init__(self, name, subject):
-        super().__init__(name)  # Calling the constructor of Person
+        super().__init__(name)
         self.subject = subject
 9. Abstract Classes and Methods
-Abstract classes cannot be instantiated directly and are meant to be subclassed. Abstract methods must be implemented in the subclass. The abc module is used to define abstract classes.
+Abstract classes cannot be instantiated directly. They contain abstract methods that must be implemented by child classes.
 
 Example:
-
 python
 Copy
 Edit
@@ -125,11 +119,18 @@ class Shape(ABC):
     @abstractmethod
     def area(self):
         pass
+    
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    
+    def area(self):
+        return self.width * self.height
 10. Instance Methods
-Instance methods are functions defined within a class that operate on an instance of the class. They are the most commonly used type of method in OOP.
+Instance methods work with object-level data. These methods are defined within a class and take self as the first argument.
 
 Example:
-
 python
 Copy
 Edit
@@ -141,10 +142,9 @@ class Dog:
     def bark(self):
         print(f"{self.name} is barking!")
 11. Class Methods
-Class methods are used to work with class variables, and they are defined using the @classmethod decorator. They take cls as the first argument to refer to the class.
+Class methods are defined with the @classmethod decorator and are used to modify class-level variables or to perform class-specific actions.
 
 Example:
-
 python
 Copy
 Edit
@@ -155,10 +155,9 @@ class Book:
     def increment_book_count(cls):
         cls.total_books += 1
 12. Static Methods
-Static methods are independent of both instance and class variables. They are defined using the @staticmethod decorator and are used for utility functions.
+Static methods are methods that don’t modify object or class state. They are defined with the @staticmethod decorator.
 
 Example:
-
 python
 Copy
 Edit
@@ -167,38 +166,36 @@ class TemperatureConverter:
     def celsius_to_fahrenheit(c):
         return (c * 9/5) + 32
 13. Composition
-Composition refers to creating relationships where one class contains objects of other classes. It establishes a "has-a" relationship between the objects.
+Composition is when one object contains another object as a part of it. It represents a "has-a" relationship.
 
 Example:
-
 python
 Copy
 Edit
 class Engine:
     def start(self):
-        print("Engine starting...")
-
+        print("Engine started")
+    
 class Car:
     def __init__(self, engine):
-        self.engine = engine  # Composition
-
-car = Car(Engine())
-car.engine.start()  # Accessing Engine method from Car
+        self.engine = engine
+    
+    def start_car(self):
+        self.engine.start()
 14. Aggregation
-Aggregation is a special form of association where one class references another, but both can exist independently.
+Aggregation is when one object refers to another object but they are not necessarily dependent on each other. It represents a "has-a" relationship.
 
 Example:
-
 python
 Copy
 Edit
-class Department:
-    def __init__(self, employee):
-        self.employee = employee  # Aggregation
-
 class Employee:
     def __init__(self, name):
         self.name = name
+
+class Department:
+    def __init__(self, employee):
+        self.employee = employee
 15. Method Resolution Order (MRO) and Diamond Inheritance
 The Method Resolution Order (MRO) determines the order in which methods are inherited when using multiple inheritance, especially in diamond inheritance scenarios.
 
