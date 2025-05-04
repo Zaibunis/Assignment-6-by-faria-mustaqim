@@ -55,50 +55,43 @@ Example:
         cls.bank_name = name
 
 ```
-5. Static Variables and Static Methods
-Static variables and methods are related to the class itself, but they don’t need an instance to be accessed. They are independent of the object state.
 
-Example:
-python
-Copy
-Edit
-class MathUtils:
+5. Static Variables and Static Methods
+Static methods are related to the class itself and do not require an instance to access. They are defined with the @staticmethod decorator.
+
+```class MathUtils:
     @staticmethod
     def add(a, b):
         return a + b
-6. Constructors and Destructors
-Constructors are used to initialize an object, while destructors are used to clean up when an object is destroyed.
 
-Example:
-python
-Copy
-Edit
-class Logger:
+```
+6. Constructors and Destructors
+Constructors are used to initialize an object, while destructors are used for cleaning up when the object is destroyed.
+
+```class Logger:
     def __init__(self):
         print("Object created")
     
     def __del__(self):
         print("Object destroyed")
-7. Access Modifiers: Public, Private, and Protected
-Public variables and methods can be accessed from outside the class. Protected variables are typically meant for internal use, and private variables are meant to be inaccessible from outside the class.
 
-Example:
-python
-Copy
-Edit
-class Employee:
+```
+        
+7. Access Modifiers: Public, Private, and Protected
+Public variables and methods can be accessed from outside the class. Protected variables are meant for internal use, while private variables cannot be accessed directly from outside the class.
+
+```class Employee:
     def __init__(self, name, salary, ssn):
         self.name = name        # Public
         self._salary = salary   # Protected
         self.__ssn = ssn        # Private
-8. The super() Function
-The super() function is used to call methods from the parent class. It is useful when overriding methods in child classes but still wanting to access the parent class functionality.
 
-Example:
-python
-Copy
-Edit
-class Person:
+```
+        
+8. The super() Function
+The super() function is used to call methods from the parent class, which is useful when you override methods in child classes but still want to access the functionality of the parent class.
+
+```class Person:
     def __init__(self, name):
         self.name = name
 
@@ -106,14 +99,13 @@ class Teacher(Person):
     def __init__(self, name, subject):
         super().__init__(name)
         self.subject = subject
-9. Abstract Classes and Methods
-Abstract classes cannot be instantiated directly. They contain abstract methods that must be implemented by child classes.
 
-Example:
-python
-Copy
-Edit
-from abc import ABC, abstractmethod
+```
+        
+9. Abstract Classes and Methods
+Abstract classes contain abstract methods that must be implemented in child classes. They cannot be instantiated directly.
+
+```from abc import ABC, abstractmethod
 
 class Shape(ABC):
     @abstractmethod
@@ -127,52 +119,48 @@ class Rectangle(Shape):
     
     def area(self):
         return self.width * self.height
-10. Instance Methods
-Instance methods work with object-level data. These methods are defined within a class and take self as the first argument.
 
-Example:
-python
-Copy
-Edit
-class Dog:
+```
+        
+10. Instance Methods
+Instance methods are regular methods that operate on object-level data. They always take self as the first argument.
+
+```class Dog:
     def __init__(self, name, breed):
         self.name = name
         self.breed = breed
     
     def bark(self):
         print(f"{self.name} is barking!")
-11. Class Methods
-Class methods are defined with the @classmethod decorator and are used to modify class-level variables or to perform class-specific actions.
 
-Example:
-python
-Copy
-Edit
-class Book:
+```
+        
+11. Class Methods
+Class methods are methods that take cls as the first parameter and operate on class-level data. They are marked with the @classmethod decorator.
+
+```class Book:
     total_books = 0
     
     @classmethod
     def increment_book_count(cls):
         cls.total_books += 1
-12. Static Methods
-Static methods are methods that don’t modify object or class state. They are defined with the @staticmethod decorator.
 
-Example:
-python
-Copy
-Edit
-class TemperatureConverter:
+```
+        
+12. Static Methods
+Static methods don’t take self or cls as parameters and can be called on both the class and instances. They are defined using the @staticmethod decorator.
+
+```class TemperatureConverter:
     @staticmethod
     def celsius_to_fahrenheit(c):
         return (c * 9/5) + 32
-13. Composition
-Composition is when one object contains another object as a part of it. It represents a "has-a" relationship.
 
-Example:
-python
-Copy
-Edit
-class Engine:
+```
+        
+13. Composition
+Composition is when one object contains another object as part of it. It represents a "has-a" relationship.
+
+```class Engine:
     def start(self):
         print("Engine started")
     
@@ -182,29 +170,26 @@ class Car:
     
     def start_car(self):
         self.engine.start()
-14. Aggregation
-Aggregation is when one object refers to another object but they are not necessarily dependent on each other. It represents a "has-a" relationship.
 
-Example:
-python
-Copy
-Edit
-class Employee:
+```
+        
+14. Aggregation
+Aggregation is when one object refers to another object, but they are independent. It represents a "has-a" relationship.
+
+```class Employee:
     def __init__(self, name):
         self.name = name
 
 class Department:
     def __init__(self, employee):
         self.employee = employee
+
+```
+        
 15. Method Resolution Order (MRO) and Diamond Inheritance
-The Method Resolution Order (MRO) determines the order in which methods are inherited when using multiple inheritance, especially in diamond inheritance scenarios.
+MRO determines the order in which methods are inherited. In diamond inheritance, when a class inherits from two classes that inherit from the same base class, MRO defines the order of method resolution.
 
-Example:
-
-python
-Copy
-Edit
-class A:
+```class A:
     def show(self):
         print("A")
 
@@ -218,47 +203,44 @@ class C(A):
 
 class D(B, C):
     pass
+
+d = D()
+d.show()  # Outputs "B"
+`
+```
+
 16. Function Decorators
-Decorators are functions that modify or extend the behavior of other functions or methods. They are often used to add additional functionality to a function in a clean and reusable manner.
+Function decorators are functions that modify the behavior of other functions. They are defined using the @ syntax.
 
-Example:
-
-python
-Copy
-Edit
-def log_function_call(func):
+```def log_function_call(func):
     def wrapper():
         print("Function is being called")
-        func()
+        return func()
     return wrapper
 
 @log_function_call
 def say_hello():
     print("Hello!")
+
+```
+    
 17. Class Decorators
-Class decorators are used to modify classes, adding or altering methods, or changing the behavior of the class.
+Class decorators are used to modify the behavior of classes, similar to function decorators.
 
-Example:
-
-python
-Copy
-Edit
-def add_greeting(cls):
+```def add_greeting(cls):
     cls.greet = lambda self: "Hello from Decorator!"
     return cls
 
 @add_greeting
 class Person:
     pass
+
+```
+    
 18. Property Decorators: @property, @setter, and @deleter
-The @property decorator allows a method to be accessed like an attribute. The @setter decorator is used to update the property, and the @deleter decorator deletes the property.
+Property decorators are used to manage attribute access. @property is used to get a value, @setter is used to set a value, and @deleter is used to delete the value.
 
-Example:
-
-python
-Copy
-Edit
-class Product:
+```class Product:
     def __init__(self, price):
         self._price = price
     
@@ -273,49 +255,47 @@ class Product:
     @price.deleter
     def price(self):
         del self._price
+
+```
+        
 19. callable() and __call__()
-The __call__() method allows an object to be called as if it were a function. The callable() function checks if an object can be called like a function.
+__call__() allows objects to be used as functions. callable() checks whether an object is callable.
 
-Example:
-
-python
-Copy
-Edit
-class Multiplier:
+```class Multiplier:
     def __init__(self, factor):
         self.factor = factor
     
     def __call__(self, x):
         return x * self.factor
+
+m = Multiplier(5)
+print(callable(m))  # True
+print(m(10))         # 50
+
+```
+
 20. Creating a Custom Exception
-Custom exceptions allow you to create more specific error types, making it easier to handle errors in a program. They are raised using the raise statement.
+Custom exceptions are user-defined error types. You can create your own exceptions for specific situations.
 
-Example:
-
-python
-Copy
-Edit
-class InvalidAgeError(Exception):
+```class InvalidAgeError(Exception):
     pass
 
 def check_age(age):
     if age < 18:
-        raise InvalidAgeError("Age must be 18 or older")
+        raise InvalidAgeError("Age must be 18 or above")
+
+```
+        
 21. Make a Custom Class Iterable
-By implementing __iter__() and __next__() methods, you can make a class iterable, enabling it to be used in a for loop.
+Making a class iterable allows you to use it in a for loop. This is done by implementing the __iter__() and __next__() methods.
 
-Example:
-
-python
-Copy
-Edit
-class Countdown:
+```class Countdown:
     def __init__(self, start):
         self.current = start
-    
+
     def __iter__(self):
         return self
-    
+
     def __next__(self):
         if self.current <= 0:
             raise StopIteration
@@ -324,11 +304,28 @@ class Countdown:
             self.current -= 1
             return current
 
+for num in Countdown(5):
+    print(num)
+
+
 ```
-Good luck with your assignments and continue your OOP journey! 🚀
+Conclusion
+In this guide, we covered important Python OOP (Object-Oriented Programming) concepts with examples to help you understand how to use them. By completing these assignments, you learned how to:
 
-pgsql
-Copy
-Edit
+Use instance and class variables (self, cls).
 
-This version should align better with your request while still keeping the content relevant to your
+Work with public, private, and protected variables.
+
+Apply inheritance, abstract classes, and method resolution order (MRO).
+
+Use decorators to modify classes and functions.
+
+Understand composition and aggregation to connect different objects.
+
+Create custom exceptions and iterable objects.
+
+Use Python's built-in functions like callable() and __call__() to make objects more flexible.
+
+These concepts will help you write cleaner and more organized code. Keep practicing, and you'll get even better at Python!
+
+Good luck and happy coding! 🚀
