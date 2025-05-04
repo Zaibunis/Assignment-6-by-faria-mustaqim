@@ -57,6 +57,7 @@ Example:
 ```
 
 5. Static Variables and Static Methods
+   
 Static methods are related to the class itself and do not require an instance to access. They are defined with the @staticmethod decorator.
 
 ```class MathUtils:
@@ -66,6 +67,7 @@ Static methods are related to the class itself and do not require an instance to
 
 ```
 6. Constructors and Destructors
+   
 Constructors are used to initialize an object, while destructors are used for cleaning up when the object is destroyed.
 
 ```class Logger:
@@ -78,6 +80,7 @@ Constructors are used to initialize an object, while destructors are used for cl
 ```
         
 7. Access Modifiers: Public, Private, and Protected
+   
 Public variables and methods can be accessed from outside the class. Protected variables are meant for internal use, while private variables cannot be accessed directly from outside the class.
 
 ```class Employee:
@@ -89,6 +92,7 @@ Public variables and methods can be accessed from outside the class. Protected v
 ```
         
 8. The super() Function
+   
 The super() function is used to call methods from the parent class, which is useful when you override methods in child classes but still want to access the functionality of the parent class.
 
 ```class Person:
@@ -103,6 +107,7 @@ class Teacher(Person):
 ```
         
 9. Abstract Classes and Methods
+    
 Abstract classes contain abstract methods that must be implemented in child classes. They cannot be instantiated directly.
 
 ```from abc import ABC, abstractmethod
@@ -123,6 +128,7 @@ class Rectangle(Shape):
 ```
         
 10. Instance Methods
+    
 Instance methods are regular methods that operate on object-level data. They always take self as the first argument.
 
 ```class Dog:
@@ -136,6 +142,7 @@ Instance methods are regular methods that operate on object-level data. They alw
 ```
         
 11. Class Methods
+    
 Class methods are methods that take cls as the first parameter and operate on class-level data. They are marked with the @classmethod decorator.
 
 ```class Book:
@@ -148,6 +155,7 @@ Class methods are methods that take cls as the first parameter and operate on cl
 ```
         
 12. Static Methods
+    
 Static methods don’t take self or cls as parameters and can be called on both the class and instances. They are defined using the @staticmethod decorator.
 
 ```class TemperatureConverter:
@@ -158,6 +166,7 @@ Static methods don’t take self or cls as parameters and can be called on both 
 ```
         
 13. Composition
+    
 Composition is when one object contains another object as part of it. It represents a "has-a" relationship.
 
 ```class Engine:
@@ -174,6 +183,7 @@ class Car:
 ```
         
 14. Aggregation
+    
 Aggregation is when one object refers to another object, but they are independent. It represents a "has-a" relationship.
 
 ```class Employee:
@@ -187,6 +197,7 @@ class Department:
 ```
         
 15. Method Resolution Order (MRO) and Diamond Inheritance
+    
 MRO determines the order in which methods are inherited. In diamond inheritance, when a class inherits from two classes that inherit from the same base class, MRO defines the order of method resolution.
 
 ```class A:
@@ -210,6 +221,7 @@ d.show()  # Outputs "B"
 ```
 
 16. Function Decorators
+    
 Function decorators are functions that modify the behavior of other functions. They are defined using the @ syntax.
 
 ```def log_function_call(func):
@@ -225,6 +237,7 @@ def say_hello():
 ```
     
 17. Class Decorators
+    
 Class decorators are used to modify the behavior of classes, similar to function decorators.
 
 ```def add_greeting(cls):
@@ -238,6 +251,7 @@ class Person:
 ```
     
 18. Property Decorators: @property, @setter, and @deleter
+    
 Property decorators are used to manage attribute access. @property is used to get a value, @setter is used to set a value, and @deleter is used to delete the value.
 
 ```class Product:
@@ -259,6 +273,7 @@ Property decorators are used to manage attribute access. @property is used to ge
 ```
         
 19. callable() and __call__()
+    
 __call__() allows objects to be used as functions. callable() checks whether an object is callable.
 
 ```class Multiplier:
@@ -275,6 +290,7 @@ print(m(10))         # 50
 ```
 
 20. Creating a Custom Exception
+    
 Custom exceptions are user-defined error types. You can create your own exceptions for specific situations.
 
 ```class InvalidAgeError(Exception):
@@ -287,6 +303,7 @@ def check_age(age):
 ```
         
 21. Make a Custom Class Iterable
+    
 Making a class iterable allows you to use it in a for loop. This is done by implementing the __iter__() and __next__() methods.
 
 ```class Countdown:
